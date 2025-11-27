@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package modules.common;
 
+option go_package = "order-service/go-proto/proto/modules";
+
 message Pagination {
   int32 page = 1;
   int32 limit = 2;
