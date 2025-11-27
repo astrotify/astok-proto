@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package services.order;
+
+import "modules/order.proto";
+
+service OrderGRPCService {
+    rpc createOrder(modules.order.CreateOrderRequest) returns (modules.order.CreateOrderResponse);
+    rpc getOrder(modules.order.GetOrderRequest) returns (modules.order.GetOrderResponse);
+    rpc getOrdersByUser(modules.order.GetOrdersByUserRequest) returns (modules.order.GetOrdersByUserResponse);
+}

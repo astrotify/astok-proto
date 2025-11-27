@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package modules.order;
+
+import "modules/common.proto";
+
+message Order {
+  int32 id = 1;
+  int32 userId = 2;
+  repeated OrderProduct products = 4;
+}
+
+message OrderProduct {
+  int32 id = 1;
+  int32 quantity = 2;
+}
+
+message CreateOrderRequest {
+  int32 userId = 1;
+  repeated OrderProduct products = 2;
+}
+  
+message CreateOrderResponse {
+  Order order = 1;
+  string message = 2;
+  bool success = 3;
+}
+
+message GetOrderRequest {
+  int32 id = 1;
+}
+
+message GetOrderResponse {
+  Order order = 1;
+  bool success = 2;
+  string message = 3;
+}
+
+message GetOrdersByUserRequest {
+  int32 userId = 1;
+}
+
+message GetOrdersByUserResponse {
+  repeated Order orders = 1;
+  modules.common.Pagination pagination = 2;
+  bool success = 5;
+  string message = 6;
+}
