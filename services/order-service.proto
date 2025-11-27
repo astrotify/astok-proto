@@ -4,7 +4,7 @@ package services.order;
 
 import "modules/order.proto";
 
-option go_package = "order-service/go-proto/proto/services";
+option go_package = "order-service/go-proto/proto/services.order";
 
 service OrderGRPCService {
     rpc createOrder(modules.order.CreateOrderRequest) returns (modules.order.CreateOrderResponse);

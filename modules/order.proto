@@ -4,7 +4,7 @@ package modules.order;
 
 import "modules/common.proto";
 
-option go_package = "order-service/go-proto/proto/modules";
+option go_package = "order-service/go-proto/proto/modules.order";
 
 message Order {
   int32 id = 1;
