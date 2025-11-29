@@ -9,6 +9,7 @@ option go_package = "go-proto/modules/order";
 message Order {
   int32 id = 1;
   int32 userId = 2;
+  double totalAmount = 3;
   repeated OrderProduct products = 4;
 }
 
