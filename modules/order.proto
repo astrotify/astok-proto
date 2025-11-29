@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package modules.order;
+package order;
 
 import "modules/common.proto";
 
-option go_package = "order-service/go-proto/proto/modules.order";
+option go_package = "go-proto/modules/order";
 
 message Order {
   int32 id = 1;
@@ -15,11 +15,13 @@ message Order {
 message OrderProduct {
   int32 id = 1;
   int32 quantity = 2;
+  double price = 3;
 }
 
 message CreateOrderRequest {
   int32 userId = 1;
-  repeated OrderProduct products = 2;
+  double totalAmount = 2;
+  repeated OrderProduct products = 3;
 }
   
 message CreateOrderResponse {
@@ -40,11 +42,13 @@ message GetOrderResponse {
 
 message GetOrdersByUserRequest {
   int32 userId = 1;
+  int32 limit = 2;
+  int32 page = 3;
 }
 
 message GetOrdersByUserResponse {
   repeated Order orders = 1;
-  modules.common.Pagination pagination = 2;
+  common.Pagination pagination = 2;
   bool success = 5;
   string message = 6;
 }

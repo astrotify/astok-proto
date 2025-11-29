@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package services.order;
+package services;
 
 import "modules/order.proto";
 
-option go_package = "order-service/go-proto/proto/services.order";
+option go_package = "go-proto/services";
 
 service OrderGRPCService {
-    rpc createOrder(modules.order.CreateOrderRequest) returns (modules.order.CreateOrderResponse);
-    rpc getOrder(modules.order.GetOrderRequest) returns (modules.order.GetOrderResponse);
-    rpc getOrdersByUser(modules.order.GetOrdersByUserRequest) returns (modules.order.GetOrdersByUserResponse);
+    rpc createOrder(order.CreateOrderRequest) returns (order.CreateOrderResponse);
+    rpc getOrder(order.GetOrderRequest) returns (order.GetOrderResponse);
+    rpc getOrdersByUser(order.GetOrdersByUserRequest) returns (order.GetOrdersByUserResponse);
 }
