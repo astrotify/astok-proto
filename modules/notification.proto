@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+package notification;
+
+import "modules/common.proto";
+
+option go_package = "go-proto/modules/notification";
+
+enum NotificationType {
+    EMAIL = 0;
+    SMS = 1;
+    PUSH = 2;
+}
+
+enum Category {
+    ORDER = 0;
+    PAYMENT = 1;
+    SHIPPING = 2;
+    SYSTEM = 3;
+}
+
+enum NotificationStatus {
+    PENDING = 0;
+    SENT = 1;
+    FAILED = 2;
+}
+
+message Notification {
+    int32 id = 1;
+    int32 userId = 2;
+    int32 orderId = 3;
+    NotificationType type = 4;
+    NotificationStatus status = 5;
+    optional Category category = 6;
+    optional string title = 7;
+    optional string message = 8;
+    optional string metadata = 9; // JSON string
+    optional string sentAt = 10; // ISO 8601 timestamp
+    optional string errorMessage = 11;
+    string createdAt = 12; // ISO 8601 timestamp
+    string updatedAt = 13; // ISO 8601 timestamp
+}
+
+message GetNotificationRequest {
+    int32 id = 1;
+}
+
+message GetNotificationResponse {
+    optional Notification notification = 1;
+    bool success = 2;
+    string message = 3;
+}
+
+message GetNotificationsByUserRequest {
+    int32 userId = 1;
+    int32 limit = 2;
+    int32 page = 3;
+}
+
+message GetNotificationsByUserResponse {
+    repeated Notification notifications = 1;
+    common.Pagination pagination = 2;
+    bool success = 3;
+    string message = 4;
+}
+
+message GetNotificationsByOrderRequest {
+    int32 orderId = 1;
+}
+
+message GetNotificationsByOrderResponse {
+    repeated Notification notifications = 1;
+    bool success = 2;
+    string message = 3;
+}
+
+message GetNotificationsByStatusRequest {
+    NotificationStatus status = 1;
+    optional int32 limit = 2;
+    optional int32 page = 3;
+}
+
+message GetNotificationsByStatusResponse {
+    repeated Notification notifications = 1;
+    optional common.Pagination pagination = 2;
+    bool success = 3;
+    string message = 4;
+}
+
+message GetNotificationsByCategoryRequest {
+    Category category = 1;
+    optional int32 limit = 2;
+    optional int32 page = 3;
+}
+
+message GetNotificationsByCategoryResponse {
+    repeated Notification notifications = 1;
+    optional common.Pagination pagination = 2;
+    bool success = 3;
+    string message = 4;
+}

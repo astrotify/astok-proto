@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package services;
+
+import "modules/common.proto";
+import "modules/notification.proto";
+
+option go_package = "go-proto/services";
+
+service NotificationGRPCService {
+    rpc GetNotification(notification.GetNotificationRequest) returns (notification.GetNotificationResponse);
+    rpc GetNotificationsByUser(notification.GetNotificationsByUserRequest) returns (notification.GetNotificationsByUserResponse);
+    rpc GetNotificationsByOrder(notification.GetNotificationsByOrderRequest) returns (notification.GetNotificationsByOrderResponse);
+    rpc GetNotificationsByStatus(notification.GetNotificationsByStatusRequest) returns (notification.GetNotificationsByStatusResponse);
+    rpc GetNotificationsByCategory(notification.GetNotificationsByCategoryRequest) returns (notification.GetNotificationsByCategoryResponse);
+}
