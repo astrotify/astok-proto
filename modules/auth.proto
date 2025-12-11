@@ -1,0 +1,132 @@
+
+syntax = "proto3";
+
+package auth;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "go-proto/modules/auth";
+
+enum AccountStatus {
+    ACTIVE = 0;
+    BLOCKED = 1;
+    DELETED = 2;
+}
+
+message Account {
+    int32 id = 1;
+    string email = 2;
+    string full_name = 3;
+    string phone = 4;
+    string username = 5;
+    string avatar_url = 6;
+    bool is_verified = 7;
+    AccountStatus status = 8;
+    google.protobuf.Timestamp created_at = 9;
+}
+
+message Token {
+    string access_token = 1;
+    string refresh_token = 2;
+    int64 expires_in = 3;
+}
+
+message RegisterRequest {
+    string email = 1;
+    string password = 2;
+    string full_name = 3;
+    string phone = 4;
+    string username = 5;
+}
+
+message LoginRequest {
+    oneof login {
+        string email = 1;
+        string phone = 2;
+        string username = 3;
+    }
+    string password = 4;
+}
+
+message RefreshTokenRequest {
+    string refresh_token = 1;
+}
+
+message VerifyTokenRequest {
+    string access_token = 1;
+}
+
+message LogoutRequest {
+    int32 user_id = 1;
+    string refresh_token = 2;
+}
+
+message GetProfileRequest {
+    int32 account_id = 1;
+}
+
+
+message UpdateProfileRequest {
+    int32 account_id = 1;
+    optional string full_name = 2;
+    optional string phone = 3;
+    optional string avatar_url = 4;
+    optional string email = 5;
+    optional string username = 6;
+    optional AccountStatus status = 7;
+    optional bool is_verified = 8;
+    optional string password = 9;
+}
+
+message ForgotPasswordRequest {
+    string email = 1;
+}
+
+message ResetPasswordRequest {
+    string token = 1;
+    string new_password = 2;
+}
+
+// === RESPONSE MESSAGES ===
+
+message AuthResponse {
+    bool success = 1;
+    string message = 2;
+    string code = 3;
+    message Data {
+        Token token = 1;
+        Account account = 2;
+    }
+    Data data = 4;
+}
+
+message VerifyTokenResponse {
+    bool success = 1;
+    string message = 2;
+    string code = 3;
+    message Data {
+        bool isValid = 1;
+        int32 accountID = 2;
+    }
+    Data data = 4;
+}
+
+message MessageResponse {
+    bool success = 1;
+    string message = 2;
+    string code = 3;
+}
+
+message GetProfileResponse {
+    bool success = 1;
+    string message = 2;
+    string code = 3;
+    Account data = 4;
+}
+
+message UpdateProfileResponse {
+    bool success = 1;
+    string message = 2;
+    string code = 3;
+    Account data = 4;
+}

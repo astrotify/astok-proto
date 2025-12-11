@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "go-proto/services";
+
+import "modules/auth.proto";
+
+service AuthGRPCService {
+    rpc Register(auth.RegisterRequest) returns (auth.AuthResponse);
+    
+    rpc Login(auth.LoginRequest) returns (auth.AuthResponse);
+    
+    rpc RefreshToken(auth.RefreshTokenRequest) returns (auth.AuthResponse);
+    
+    rpc VerifyToken(auth.VerifyTokenRequest) returns (auth.VerifyTokenResponse);
+    
+    rpc Logout(auth.LogoutRequest) returns (auth.MessageResponse);
+
+    rpc GetProfile(auth.GetProfileRequest) returns (auth.GetProfileResponse);
+
+    rpc UpdateProfile(auth.UpdateProfileRequest) returns (auth.UpdateProfileResponse);
+
+    rpc ForgotPassword(auth.ForgotPasswordRequest) returns (auth.MessageResponse);
+    
+    rpc ResetPassword(auth.ResetPasswordRequest) returns (auth.MessageResponse);
+
+}
