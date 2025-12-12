@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package services;
 
-import "modules/common.proto";
 import "modules/notification.proto";
 
 option go_package = "go-proto/services";
