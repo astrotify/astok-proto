@@ -7,7 +7,8 @@ import "modules/order.proto";
 option go_package = "go-proto/services";
 
 service OrderGRPCService {
-    rpc createOrder(order.CreateOrderRequest) returns (order.CreateOrderResponse);
-    rpc getOrder(order.GetOrderRequest) returns (order.GetOrderResponse);
-    rpc getOrdersByUser(order.GetOrdersByUserRequest) returns (order.GetOrdersByUserResponse);
+    rpc CreateOrder(order.CreateOrderRequest) returns (order.CreateOrderResponse);
+    rpc GetOrder(order.GetOrderRequest) returns (order.GetOrderResponse);
+    rpc GetOrdersByUser(order.GetOrdersByUserRequest) returns (order.GetOrdersByUserResponse);
+    rpc UpdateOrderStatus(order.UpdateOrderStatusRequest) returns (order.UpdateOrderStatusResponse);
 }
