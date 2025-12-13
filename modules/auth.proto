@@ -3,8 +3,6 @@ syntax = "proto3";
 
 package auth;
 
-import "google/protobuf/timestamp.proto";
-
 option go_package = "go-proto/modules/auth";
 
 enum AccountStatus {
@@ -22,13 +20,13 @@ message Account {
     string avatar_url = 6;
     bool is_verified = 7;
     AccountStatus status = 8;
-    google.protobuf.Timestamp created_at = 9;
+    string created_at = 9;  // ISO 8601 UTC format
 }
 
 message Token {
     string access_token = 1;
     string refresh_token = 2;
-    int64 expires_in = 3;
+    int32 expires_in = 3;
 }
 
 message RegisterRequest {
